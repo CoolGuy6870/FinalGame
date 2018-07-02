@@ -10,12 +10,16 @@ import java.util.Random;
 
 public class Player {
     private Sprite myImage;
+    //private Sprite myImage2;
     private Vector2 velocity;
 
-    public Player(int startx,int starty) {
-        myImage = new Sprite(new Texture(Gdx.files.internal("player.jpg")));
+    public Player(int startx,int starty,String imagepath) {
+        myImage = new Sprite(new Texture(Gdx.files.internal(imagepath)));
+        //myImage2 = new Sprite(new Texture(Gdx.files.internal("Player 2.gif")));
         myImage.setX(startx);
         myImage.setY(starty);
+        //myImage2.setX(startx);
+        //myImage2.setY(starty);
 
         velocity = new Vector2( 0,  100);
 
