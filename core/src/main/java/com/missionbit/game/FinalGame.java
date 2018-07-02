@@ -19,16 +19,24 @@ public class FinalGame extends ApplicationAdapter {
     private OrthographicCamera camera;
     private Random randomSource;
     private Sprite myImage;
+    private Sprite myImage2;
     private SpriteBatch myBatch;
     private Vector2 velocity;
+    private Player player1;
+    private Player player2;
 
 
     @Override
     public void create() {
-        myImage = new Sprite( new Texture(Gdx.files.internal("player.jpg")));
-        myImage.setX(0);
-        myImage.setY(200);
-        randomSource = new Random();
+//        myImage = new Sprite( new Texture(Gdx.files.internal("player.jpg")));
+//        myImage.setX(0);
+//        myImage.setY(240);
+//        randomSource = new Random();
+//
+//        myImage2 = new Sprite( new Texture(Gdx.files.internal("player.jpg")));
+//        myImage2.setX(Gdx.graphics.getWidth()-myImage2.getWidth());
+//        myImage2.setY(240);
+//        randomSource = new Random();
 
         // Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
@@ -36,10 +44,13 @@ public class FinalGame extends ApplicationAdapter {
 
         // Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
+        player1 = new Player(0, 0);
+        player2 = new Player(0, 0);
+        player2.setx(Gdx.graphics.getWidth()-player2.getWidth());
 
         //TODO: Load our image
         // Create a random X and Y velocity
-        velocity = new Vector2( 0,  100);
+//        velocity = new Vector2( 0,  100);
     }
 
     @Override
@@ -54,14 +65,23 @@ public class FinalGame extends ApplicationAdapter {
         myBatch.setProjectionMatrix(camera.combined);
 
         //TODO: Draw our image!
-        float xPos = myImage.getX() + velocity.x * Gdx.graphics.getDeltaTime();
-        float yPos = myImage.getY() + velocity.y * Gdx.graphics.getDeltaTime();
+//        float xPos = myImage.getX() + velocity.x * Gdx.graphics.getDeltaTime();
+//        float yPos = myImage.getY() + velocity.y * Gdx.graphics.getDeltaTime();
+//
+//        myImage.setX(xPos);
+//        myImage.setY(yPos);
 
-        myImage.setX(xPos);
-        myImage.setY(yPos);
+//        xPos = myImage2.getX() + velocity.x * Gdx.graphics.getDeltaTime();
+//        yPos = myImage2.getY() + velocity.y * Gdx.graphics.getDeltaTime();
+//
+//        myImage2.setX(xPos);
+//        myImage2.setY(yPos);
 
         myBatch.begin();
-        myImage.draw(myBatch);
+        player1.draw(myBatch);
+        player2.draw(myBatch);
+//        myImage.draw(myBatch);
+//        myImage2.draw(myBatch);
         myBatch.end();
     }
 
