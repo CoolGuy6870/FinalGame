@@ -48,7 +48,7 @@ public class FinalGame extends ApplicationAdapter {
         // Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
         player1 = new Player(108, 240, "Player 1.gif");
-        player2 = new Player(620, 240, "Player 2.gif");
+        player2 = new Player(626, 240, "Player 2.gif");
         //player2.setx(Gdx.graphics.getWidth()-player2.getWidth());
 
         //TODO: Load our image
