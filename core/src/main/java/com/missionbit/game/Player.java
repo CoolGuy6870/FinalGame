@@ -24,7 +24,7 @@ public class Player {
         //myImage2.setY(starty);
 
         velocity = new Vector2( 0,  0);
-        speed = 100.0f;
+        speed = 230.0f;
 
     }
     public void draw(SpriteBatch myBatch){
