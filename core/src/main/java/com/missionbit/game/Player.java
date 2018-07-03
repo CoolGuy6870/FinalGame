@@ -31,6 +31,29 @@ public class Player {
         myImage.setX(xPos);
         myImage.setY(yPos);
 
+        Gdx.graphics.getWidth();
+        Gdx.graphics.getHeight();
+
+        if(myImage.getX() < 0){
+            myImage.setX(0);
+            velocity.x *= -1;
+        }
+
+        if(myImage.getY() < 0){
+            myImage.setY(0);
+            velocity.y *= -1;
+        }
+
+        if(myImage.getX() + myImage.getWidth() > Gdx.graphics.getWidth()){
+            myImage.setX(Gdx.graphics.getWidth()-myImage.getWidth());
+            velocity.x *= -1;
+        }
+
+        if(myImage.getY() + myImage.getHeight() > Gdx.graphics.getHeight()){
+            myImage.setY(Gdx.graphics.getHeight()-myImage.getHeight());
+            velocity.y *= -1;
+        }
+
 
         myImage.draw(myBatch);
 
