@@ -21,7 +21,7 @@ public class FinalGame extends ApplicationAdapter {
     private Sprite myImage;
     private Sprite myImage2;
     private SpriteBatch myBatch;
-    private Vector2 velocity;
+    ///private Vector2 velocity;
     private Player player1;
     private Player player2;
 
@@ -78,8 +78,8 @@ public class FinalGame extends ApplicationAdapter {
 //        myImage2.setY(yPos);
 
         myBatch.begin();
-        player1.draw(myBatch);
-        player2.draw(myBatch);
+        player2.updown(myBatch);
+        player1.ws(myBatch);
 //        myImage.draw(myBatch);
 //        myImage2.draw(myBatch);
         myBatch.end();
