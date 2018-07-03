@@ -44,9 +44,9 @@ public class FinalGame extends ApplicationAdapter {
 
         // Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
-        player1 = new Player(0, 0, "Player 1.gif");
-        player2 = new Player(0, 0, "Player 2.gif");
-        player2.setx(Gdx.graphics.getWidth()-player2.getWidth());
+        player1 = new Player(96, 240, "Player 1.gif");
+        player2 = new Player(608, 240, "Player 2.gif");
+        //player2.setx(Gdx.graphics.getWidth()-player2.getWidth());
 
         //TODO: Load our image
         // Create a random X and Y velocity
@@ -57,7 +57,7 @@ public class FinalGame extends ApplicationAdapter {
     public void render() {
 
         // Clear the screen
-        Gdx.gl.glClearColor(0, 1, 0, 0);
+        Gdx.gl.glClearColor(0, 0, 1, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         //Set up our camera
