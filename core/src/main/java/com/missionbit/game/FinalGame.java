@@ -24,10 +24,13 @@ public class FinalGame extends ApplicationAdapter {
     ///private Vector2 velocity;
     private Player player1;
     private Player player2;
+    private Texture background;
 
 
     @Override
     public void create() {
+
+        background = new Texture("background.png");
 //        myImage = new Sprite( new Texture(Gdx.files.internal("player.jpg")));
 //        myImage.setX(0);
 //        myImage.setY(240);
@@ -57,14 +60,17 @@ public class FinalGame extends ApplicationAdapter {
     public void render() {
 
         // Clear the screen
-        Gdx.gl.glClearColor(0, 0, 1, 0);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+//        Gdx.gl.glClearColor(0, 1, 0, 0);
+//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+
 
         //Set up our camera
         camera.update();
         myBatch.setProjectionMatrix(camera.combined);
 
         //TODO: Draw our image!
+
 //        float xPos = myImage.getX() + velocity.x * Gdx.graphics.getDeltaTime();
 //        float yPos = myImage.getY() + velocity.y * Gdx.graphics.getDeltaTime();
 //
@@ -78,6 +84,7 @@ public class FinalGame extends ApplicationAdapter {
 //        myImage2.setY(yPos);
 
         myBatch.begin();
+        myBatch.draw(background, 0, 0);
         player2.updown(myBatch);
         player1.ws(myBatch);
 //        myImage.draw(myBatch);
