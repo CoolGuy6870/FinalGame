@@ -54,7 +54,7 @@ public class FinalGame extends ApplicationAdapter {
         //player2.setx(Gdx.graphics.getWidth()-player2.getWidth());
         obstacles = new ArrayList<Obstacles>();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             Obstacles f = new Obstacles(myBatch);
             Obstacles r = new Obstacles(myBatch);
             obstacles.add(f);
