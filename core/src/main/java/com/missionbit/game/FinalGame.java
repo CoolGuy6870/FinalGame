@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class FinalGame extends ApplicationAdapter {
@@ -25,6 +26,7 @@ public class FinalGame extends ApplicationAdapter {
     private Player player1;
     private Player player2;
     private Texture background;
+    private ArrayList<Obstacles> obstacles;
 
 
     @Override
@@ -50,6 +52,12 @@ public class FinalGame extends ApplicationAdapter {
         player1 = new Player(108, 240, "Player 1.gif");
         player2 = new Player(626, 240, "Player 2.gif");
         //player2.setx(Gdx.graphics.getWidth()-player2.getWidth());
+        obstacles = new ArrayList<Obstacles>();
+
+        for (int i = 0; i < 10; i++) {
+            Obstacles f = new Obstacles(myBatch);
+            obstacles.add(f);
+        }
 
         //TODO: Load our image
         // Create a random X and Y velocity
@@ -62,7 +70,6 @@ public class FinalGame extends ApplicationAdapter {
         // Clear the screen
 //        Gdx.gl.glClearColor(0, 1, 0, 0);
 //        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
 
 
         //Set up our camera
@@ -87,13 +94,16 @@ public class FinalGame extends ApplicationAdapter {
         myBatch.draw(background, 0, 0);
         player2.updown(myBatch);
         player1.ws(myBatch);
+        for (Obstacles f : obstacles) {
+            f.update();
+            f.draw();
 //        myImage.draw(myBatch);
 //        myImage2.draw(myBatch);
+        }
         myBatch.end();
     }
-
-    @Override
-    public void dispose() {
-        myBatch.dispose();
+        @Override
+        public void dispose () {
+            myBatch.dispose();
+        }
     }
-}
