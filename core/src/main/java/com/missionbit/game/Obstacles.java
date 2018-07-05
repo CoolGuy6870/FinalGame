@@ -29,7 +29,7 @@ public class Obstacles {
 //        effect = new ParticleEffect();
 //        effect.load(Gdx.files.internal("effects/explode.p"), Gdx.files.internal("images"));
 
-        velocity = new Vector2(MathUtils.random() * -300, MathUtils.random() * 300);
+        velocity = new Vector2(MathUtils.random() * -200, MathUtils.random() * 200);
     }
 
     public void update() {
