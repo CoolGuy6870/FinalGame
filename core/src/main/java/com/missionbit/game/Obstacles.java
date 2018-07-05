@@ -29,7 +29,7 @@ public class Obstacles {
 //        effect = new ParticleEffect();
 //        effect.load(Gdx.files.internal("effects/explode.p"), Gdx.files.internal("images"));
 
-        velocity = new Vector2(MathUtils.random() * -200, MathUtils.random() * 200);
+        velocity = new Vector2(MathUtils.random() * 25, MathUtils.random() * 25);
     }
 
     public void update() {
@@ -71,9 +71,12 @@ public class Obstacles {
         }
     }
 
+
+
     public void draw() {
         if (alive) {
             myImage.draw(myBatch);
+            myImage2.draw(myBatch);
         } else {
             effect.draw(myBatch, Gdx.graphics.getDeltaTime());
         }

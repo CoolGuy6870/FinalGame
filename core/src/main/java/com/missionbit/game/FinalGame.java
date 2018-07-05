@@ -56,7 +56,9 @@ public class FinalGame extends ApplicationAdapter {
 
         for (int i = 0; i < 5; i++) {
             Obstacles f = new Obstacles(myBatch);
+            Obstacles r = new Obstacles(myBatch);
             obstacles.add(f);
+            obstacles.add(r);
         }
 
         //TODO: Load our image
@@ -97,13 +99,20 @@ public class FinalGame extends ApplicationAdapter {
         for (Obstacles f : obstacles) {
             f.update();
             f.draw();
+
+        for (Obstacles r : obstacles) {
+            r.update();
+            r.draw();
+
+        }
+
 //        myImage.draw(myBatch);
 //        myImage2.draw(myBatch);
-        }
-        myBatch.end();
     }
+        myBatch.end();
+}
         @Override
         public void dispose () {
             myBatch.dispose();
         }
-    }
+}
