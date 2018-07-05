@@ -17,6 +17,7 @@ public class Obstacles {
     private SpriteBatch myBatch;
     private ParticleEffect effect;
     private boolean alive = true;
+    private Vector2 velocity2;
 
 
     //This goes in the body of our class
@@ -29,7 +30,8 @@ public class Obstacles {
 //        effect = new ParticleEffect();
 //        effect.load(Gdx.files.internal("effects/explode.p"), Gdx.files.internal("images"));
 
-        velocity = new Vector2(MathUtils.random() * 25, MathUtils.random() * 25);
+        velocity = new Vector2(MathUtils.random() * 40, MathUtils.random() * 40);
+        velocity2 = new Vector2(MathUtils.random()*40,  MathUtils.random()*40);
     }
 
     public void update() {
@@ -37,12 +39,15 @@ public class Obstacles {
 
         float xPos = myImage.getX() + velocity.x * Gdx.graphics.getDeltaTime();
         float yPos = myImage.getY() + velocity.y * Gdx.graphics.getDeltaTime();
+        float xPos2 = myImage2.getX() + velocity2.x * Gdx.graphics.getDeltaTime();
+        float yPos2 = myImage2.getY() + velocity2.y * Gdx.graphics.getDeltaTime();
+
 
 
         myImage.setX(xPos);
         myImage.setY(yPos);
-        myImage2.setX(xPos);
-        myImage2.setY(yPos);
+        myImage2.setX(xPos2);
+        myImage2.setY(yPos2);
 
         Gdx.graphics.getWidth();
         Gdx.graphics.getHeight();
@@ -69,7 +74,32 @@ public class Obstacles {
             myImage.setY(Gdx.graphics.getHeight() - myImage.getHeight());
             velocity.y *= -1;
         }
+
+
+     if (myImage2.getX() < 230) {
+        myImage2.setX(230);
+        velocity2.x *= -1;
     }
+
+        if (myImage2.getY() < 0) {
+        myImage2.setY(0);
+        velocity2.y *= -1;
+    }
+
+
+
+
+        if (myImage2.getX() > 660) {
+        myImage2.setX(660);
+        velocity2.x *= -1;
+    }
+
+        if (myImage2.getY() + myImage2.getHeight() > Gdx.graphics.getHeight()) {
+        myImage2.setY(Gdx.graphics.getHeight() - myImage2.getHeight());
+        velocity2.y *= -1;
+    }
+}
+
 
 
 
@@ -81,6 +111,7 @@ public class Obstacles {
             effect.draw(myBatch, Gdx.graphics.getDeltaTime());
         }
     }
+
 }
 
 
