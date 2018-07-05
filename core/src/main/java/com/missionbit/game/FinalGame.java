@@ -45,7 +45,7 @@ public class FinalGame extends ApplicationAdapter {
 
         // Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 480);
+        camera.setToOrtho(false, 960, 540);
 
         // Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
