@@ -89,8 +89,8 @@ public class Obstacles {
 
 
 
-        if (myImage2.getX() > 660) {
-        myImage2.setX(660);
+        if (myImage2.getX() > 675) {
+        myImage2.setX(675);
         velocity2.x *= -1;
     }
 

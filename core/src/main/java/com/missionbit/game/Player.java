@@ -15,6 +15,7 @@ public class Player {
     private Vector2 velocity;
     private float speed;
 
+
     public Player(int startx,int starty,String imagepath) {
         myImage = new Sprite(new Texture(Gdx.files.internal(imagepath)));
         //myImage2 = new Sprite(new Texture(Gdx.files.internal("Player 2.gif")));
@@ -37,6 +38,7 @@ public class Player {
         if(Gdx.input.isKeyPressed(Input.Keys.DPAD_DOWN)) {
             myImage.setY(myImage.getY() - speed * Gdx.graphics.getDeltaTime());
         }
+
 
 
         /*float xPos = myImage.getX() + velocity.x * Gdx.graphics.getDeltaTime();
@@ -114,6 +116,12 @@ public class Player {
             velocity.y *= -1;
         }
         myImage.draw(myBatch);
+
+    }
+
+    public Bullet shoot(int right) {
+        Bullet b = new Bullet(myImage.getX(),myImage.getY(), right);
+        return b;
 
     }
 

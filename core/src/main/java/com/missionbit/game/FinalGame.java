@@ -3,6 +3,7 @@ package com.missionbit.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -27,6 +28,7 @@ public class FinalGame extends ApplicationAdapter {
     private Player player2;
     private Texture background;
     private ArrayList<Obstacles> obstacles;
+    private Bullet bullet;
 
 
     @Override
@@ -100,16 +102,29 @@ public class FinalGame extends ApplicationAdapter {
             f.update();
             f.draw();
 
-        for (Obstacles r : obstacles) {
-            r.update();
-            r.draw();
-
-        }
+//        for (Obstacles r : obstacles) {
+//            r.update();
+//            r.draw();
+//
+//        }
+            if(bullet != null) {
+                bullet.update();
+                bullet.draw(myBatch);
+            }
 
 //        myImage.draw(myBatch);
 //        myImage2.draw(myBatch);
     }
         myBatch.end();
+        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+            bullet = player1.shoot(1);
+
+
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
+            bullet = player2.shoot(-1);
+        }
 }
         @Override
         public void dispose () {
