@@ -79,11 +79,12 @@ public class Bullet {
     private ParticleEffect effect;
 
 
+
     public Bullet(float x, float y, int right) {
         //myBatch = batch;
         myImage = new Sprite(new Texture(Gdx.files.internal("bullet.gif")));
 
-        myImage.setX(x - 22);
+        myImage.setX(x - 20);
         myImage.setY(y - 22);
 
         velocity = new Vector2(60 * right, 0);
