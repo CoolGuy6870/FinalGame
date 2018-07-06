@@ -81,10 +81,10 @@ public class Bullet {
 
     public Bullet(float x, float y, int right) {
         //myBatch = batch;
-        myImage = new Sprite(new Texture(Gdx.files.internal("tree.png")));
+        myImage = new Sprite(new Texture(Gdx.files.internal("bullet.gif")));
 
-        myImage.setX(x);
-        myImage.setY(y);
+        myImage.setX(x - 22);
+        myImage.setY(y - 22);
 
         velocity = new Vector2(60 * right, 0);
 
