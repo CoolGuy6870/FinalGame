@@ -28,22 +28,17 @@ public class FinalGame extends ApplicationAdapter {
     private Player player2;
     private Texture background;
     private ArrayList<Obstacles> obstacles;
-    private Bullet bullet;
+    private ArrayList<Bullet> bulletsP1 ;
+    private int count;
+
+
 
 
     @Override
     public void create() {
 
         background = new Texture("background.png");
-//        myImage = new Sprite( new Texture(Gdx.files.internal("player.jpg")));
-//        myImage.setX(0);
-//        myImage.setY(240);
-//        randomSource = new Random();
-//
-//        myImage2 = new Sprite( new Texture(Gdx.files.internal("player.jpg")));
-//        myImage2.setX(Gdx.graphics.getWidth()-myImage2.getWidth());
-//        myImage2.setY(240);
-//        randomSource = new Random();
+
 
         // Set up camera for 2d view of 800x480 pixels
         camera = new OrthographicCamera();
@@ -53,27 +48,34 @@ public class FinalGame extends ApplicationAdapter {
         myBatch = new SpriteBatch();
         player1 = new Player(140, 270, "Player 1.gif");
         player2 = new Player(755, 270, "Player 2.gif");
-        //player2.setx(Gdx.graphics.getWidth()-player2.getWidth());
+
         obstacles = new ArrayList<Obstacles>();
+        bulletsP1 = new ArrayList<Bullet>();
 
         for (int i = 0; i < 3; i++) {
             Obstacles f = new Obstacles(myBatch);
             Obstacles r = new Obstacles(myBatch);
             obstacles.add(f);
             obstacles.add(r);
+
         }
+
+
+
+        }
+
+
 
         //TODO: Load our image
         // Create a random X and Y velocity
 //        velocity = new Vector2( 0,  100);
-    }
+
 
     @Override
     public void render() {
 
         // Clear the screen
-//        Gdx.gl.glClearColor(0, 1, 0, 0);
-//        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
 
 
         //Set up our camera
@@ -82,17 +84,7 @@ public class FinalGame extends ApplicationAdapter {
 
         //TODO: Draw our image!
 
-//        float xPos = myImage.getX() + velocity.x * Gdx.graphics.getDeltaTime();
-//        float yPos = myImage.getY() + velocity.y * Gdx.graphics.getDeltaTime();
-//
-//        myImage.setX(xPos);
-//        myImage.setY(yPos);
 
-//        xPos = myImage2.getX() + velocity.x * Gdx.graphics.getDeltaTime();
-//        yPos = myImage2.getY() + velocity.y * Gdx.graphics.getDeltaTime();
-//
-//        myImage2.setX(xPos);
-//        myImage2.setY(yPos);
 
         myBatch.begin();
         myBatch.draw(background, 0, 0);
@@ -102,32 +94,37 @@ public class FinalGame extends ApplicationAdapter {
             f.update();
             f.draw();
 
-//        for (Obstacles r : obstacles) {
-//            r.update();
-//            r.draw();
-//
-//        }
-            if(bullet != null) {
-                bullet.update();
-                bullet.draw(myBatch);
-            }
 
-//        myImage.draw(myBatch);
-//        myImage2.draw(myBatch);
+
     }
+
+
+
+                if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+                    bulletsP1.add(player1.shoot(1));
+
+                }
+
+                if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
+                    bulletsP1.add(player2.shoot(-1));
+
+                }
+
+                for(Bullet bullet : bulletsP1){
+                    if (bullet != null) {
+                        bullet.update();
+                        bullet.draw(myBatch);
+                    }
+                }
+
         myBatch.end();
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            bullet = player1.shoot(1);
 
 
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
-            bullet = player2.shoot(-1);
-        }
-}
         @Override
         public void dispose () {
             myBatch.dispose();
         }
 }
+

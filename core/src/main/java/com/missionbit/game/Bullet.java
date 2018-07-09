@@ -87,7 +87,11 @@ public class Bullet {
         myImage.setX(x - 20);
         myImage.setY(y - 22);
 
-        velocity = new Vector2(60 * right, 0);
+        velocity = new Vector2(600 * right, 0);
+
+        for (int i = 0; i < 3; i++) {
+            boolean alive = false;
+        }
 
 
 
