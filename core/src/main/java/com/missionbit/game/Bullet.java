@@ -66,10 +66,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-import java.util.Vector;
+;
 
 public class Bullet {
     //private SpriteBatch myBatch;
@@ -87,14 +87,20 @@ public class Bullet {
         myImage.setX(x - 20);
         myImage.setY(y - 22);
 
+        velocity = new Vector2(400 * right, 0);
+
+//        for (int i = 0; i < 3; i++) {
+//            boolean alive = false;
+//        }
+
+
+
+    }
+    public void reset(float x, float y, int right){
+        alive = true;
         velocity = new Vector2(600 * right, 0);
-
-        for (int i = 0; i < 3; i++) {
-            boolean alive = false;
-        }
-
-
-
+        myImage.setX(x - 20);
+        myImage.setY(y - 22);
     }
 
     public void update() {
@@ -117,5 +123,32 @@ public class Bullet {
         } else {
             effect.draw(myBatch, Gdx.graphics.getDeltaTime());
         }
+    }
+    public void setActive(boolean active){
+        alive = active;
+    }
+    public boolean getActive(){
+        return alive;
+    }
+
+    public float getX(){
+        return myImage.getX();
+    }
+
+    public float getWidth(){
+        return myImage.getWidth();
+    }
+    public float getHeight(){
+        return myImage.getHeight();
+    }
+    public float getY(){
+        return myImage.getY();
+    }
+    public Rectangle getBoundingRectangle(){
+        return myImage.getBoundingRectangle();
+    }
+
+    public void setZero(){
+        velocity.setZero();
     }
 }
