@@ -84,8 +84,8 @@ public class Bullet {
         //myBatch = batch;
         myImage = new Sprite(new Texture(Gdx.files.internal("bullet.gif")));
 
-        myImage.setX(x - 20);
-        myImage.setY(y - 22);
+        myImage.setX(x);
+        myImage.setY(y);
 
         velocity = new Vector2(400 * right, 0);
 
@@ -99,8 +99,8 @@ public class Bullet {
     public void reset(float x, float y, int right){
         alive = true;
         velocity = new Vector2(600 * right, 0);
-        myImage.setX(x - 20);
-        myImage.setY(y - 22);
+        myImage.setX(x);
+        myImage.setY(y);
     }
 
     public void update() {

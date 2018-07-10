@@ -40,8 +40,15 @@ public class Player {
     public void shoot(BulletManager manager, int right){
         if(System.currentTimeMillis()- bulletSpawn > 500) {
             //bulletsP1.add(manager.spawnBullet(player1.getX(),player1.getY(), 1));
-            manager.spawnBullet(getX(),getY(), right);
-            bulletSpawn = System.currentTimeMillis();
+            if(  right == 1) {
+                manager.spawnBullet(getX() + myImage.getWidth() + 1, getY() + 5, right);
+            }
+
+            else if (right == -1) {
+                manager.spawnBullet(getX() - 6, getY() + 5, right);
+            }
+                bulletSpawn = System.currentTimeMillis();
+
         }
     }
 
@@ -142,16 +149,18 @@ public class Player {
 //            b.setActive(false);
 
 
-        if (b.getX() + b.getWidth() > myImage.getX()) {
-            if (b.getY() + b.getHeight() < myImage.getY() + myImage.getHeight() && b.getY() + b.getHeight() > myImage.getY()) {
-//                effect.setPosition(myImage.getX() + myImage.getWidth() / 2.0f, myImage.getY() + myImage.getHeight() / 2.0f);
-//                effect.start();
+          if(b.getBoundingRectangle().overlaps(myImage.getBoundingRectangle())) {
+
+//        if (b.getX() + b.getWidth() > myImage.getX()) {
+//            if (b.getY() + b.getHeight() < myImage.getY() + myImage.getHeight() && b.getY() + b.getHeight() > myImage.getY()) {
+////                effect.setPosition(myImage.getX() + myImage.getWidth() / 2.0f, myImage.getY() + myImage.getHeight() / 2.0f);
+////                effect.start();
                 System.out.print("hit!");
                 myImage.setColor(1, 0, 0, 1);
                 b.setZero();
                 b.setActive(false);
 
-            }
+            //}
         }
     }
 
