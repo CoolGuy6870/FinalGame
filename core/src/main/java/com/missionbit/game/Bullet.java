@@ -120,9 +120,9 @@ public class Bullet {
     public void draw(SpriteBatch myBatch) {
         if (alive) {
             myImage.draw(myBatch);
-        } else {
-            effect.draw(myBatch, Gdx.graphics.getDeltaTime());
-        }
+        } //else {
+//            effect.draw(myBatch, Gdx.graphics.getDeltaTime());
+//        }
     }
     public void setActive(boolean active){
         alive = active;

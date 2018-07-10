@@ -19,9 +19,9 @@ public class FinalGame extends ApplicationAdapter {
     private Player player2;
     private Texture background;
     private ArrayList<Obstacles> obstacles;
-    private ArrayList<Bullet> bulletsP1 ;
+//    private ArrayList<Bullet> bulletsP1 ;
     private int count;
-    private long lastSpawn;
+
     private BulletManager manager;
 
 
@@ -45,7 +45,7 @@ public class FinalGame extends ApplicationAdapter {
         manager = new BulletManager();
 
         obstacles = new ArrayList<Obstacles>();
-        bulletsP1 = new ArrayList<Bullet>();
+//        bulletsP1 = new ArrayList<Bullet>();
 
         for (int i = 0; i < 3; i++) {
             Obstacles f = new Obstacles(myBatch);
@@ -54,7 +54,7 @@ public class FinalGame extends ApplicationAdapter {
             obstacles.add(r);
         }
 
-        lastSpawn = System.currentTimeMillis();
+
 
         }
 
@@ -82,20 +82,21 @@ public class FinalGame extends ApplicationAdapter {
 
 
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-            if(System.currentTimeMillis()- lastSpawn > 500) {
-                bulletsP1.add(manager.spawnBullet(player1.getX(),player1.getY(), 1));
-                lastSpawn = System.currentTimeMillis();
-            }
+//
+            player1.shoot(manager, 1);
             //bulletsP1.add(player1.shoot(1));
             //manager.spawnBullet(player1.getX(),player1.getY(), 1);
 
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
-            if(System.currentTimeMillis()- lastSpawn > 500) {
-                bulletsP1.add(manager.spawnBullet(player2.getX(),player2.getY(), -1));
-                lastSpawn = System.currentTimeMillis();
-            }
+
+            player2.shoot(manager, -1);
+//            if(System.currentTimeMillis()- lastSpawn > 500) {
+//               // bulletsP1.add(manager.spawnBullet(player2.getX(),player2.getY(), -1));
+//                manager.spawnBullet(player2.getX(),player2.getY(), -1);
+//                lastSpawn = System.currentTimeMillis();
+//            }
             //bulletsP1.add(player2.shoot(-1));
             //manager.spawnBullet(player2.getX(),player2.getY(), -1);
 
@@ -103,19 +104,19 @@ public class FinalGame extends ApplicationAdapter {
 
         }
         camera.update();
-        manager.update();
+        manager.update(player1, player2);
         manager.draw(camera);
 
-        for(Bullet bullet : bulletsP1){
-            if (bullet != null) {
-                bullet.update();
-                bullet.draw(myBatch);
+//        for(Bullet bullet : bulletsP1){
+//            if (bullet != null) {
+//                bullet.update();
+//                bullet.draw(myBatch);
+//
+//            }
+//            player1.handleHit(bullet);
+//            player2.handleHit(bullet);
+//        }
 
-            }
-            player1.handleHit(bullet);
-            player2.handleHit(bullet);
-        }
-        manager.update();
         myBatch.end();
         }
 

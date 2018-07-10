@@ -18,6 +18,7 @@ public class Player {
     private Vector2 velocity;
     private float speed;
     private ParticleEffect effect;
+    private long bulletSpawn;
 
 
     public Player(int startx, int starty, String imagepath) {
@@ -29,9 +30,19 @@ public class Player {
 
         velocity = new Vector2(0, 0);
         speed = 230.0f;
+
+        bulletSpawn = System.currentTimeMillis();
 //
 //        effect = new ParticleEffect();
 //        effect.load(Gdx.files.internal("effects/explode.p"), Gdx.files.internal("images"));
+    }
+
+    public void shoot(BulletManager manager, int right){
+        if(System.currentTimeMillis()- bulletSpawn > 500) {
+            //bulletsP1.add(manager.spawnBullet(player1.getX(),player1.getY(), 1));
+            manager.spawnBullet(getX(),getY(), right);
+            bulletSpawn = System.currentTimeMillis();
+        }
     }
 
     public void draw(SpriteBatch myBatch) {
@@ -107,12 +118,12 @@ public class Player {
 
     }
 
-    public Bullet shoot(int right) {
-        Bullet b = new Bullet(myImage.getX(), myImage.getY(), right);
-        return b;
-
-
-    }
+//    public Bullet shoot(int right) {
+//        Bullet b = new Bullet(myImage.getX(), myImage.getY(), right);
+//        return b;
+//
+//
+//    }
 
     public float getX() {
         return myImage.getX();

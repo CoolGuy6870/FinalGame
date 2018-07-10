@@ -36,9 +36,11 @@ public class BulletManager {
 
     }
 
-    public void update(){
+    public void update( Player P1,  Player P2){
         for(Bullet b : activeBullets){
             b.update();
+            P1.handleHit(b);
+            P2.handleHit(b);
             if(b.getActive() == false){
                 removed.add(b);
             }
