@@ -98,7 +98,7 @@ public class Bullet {
     }
     public void reset(float x, float y, int right){
         alive = true;
-        velocity = new Vector2(600 * right, 0);
+        velocity = new Vector2(400 * right, 0);
         myImage.setX(x);
         myImage.setY(y);
     }
