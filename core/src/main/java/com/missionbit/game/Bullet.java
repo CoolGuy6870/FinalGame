@@ -151,4 +151,5 @@ public class Bullet {
     public void setZero(){
         velocity.setZero();
     }
+
 }

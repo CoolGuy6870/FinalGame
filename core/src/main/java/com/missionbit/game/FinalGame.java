@@ -18,11 +18,13 @@ public class FinalGame extends ApplicationAdapter {
     private Player player1;
     private Player player2;
     private Texture background;
-    private ArrayList<Obstacles> obstacles;
+   // private ArrayList<Obstacles> obstacles;
 //    private ArrayList<Bullet> bulletsP1 ;
     private int count;
 
     private BulletManager manager;
+
+    private ObstacleManager obstacleManager;
 
 
 
@@ -43,16 +45,19 @@ public class FinalGame extends ApplicationAdapter {
         player1 = new Player(140, 270, "Player 1.gif");
         player2 = new Player(755, 270, "Player 2.gif");
         manager = new BulletManager();
+        obstacleManager = new ObstacleManager();
 
-        obstacles = new ArrayList<Obstacles>();
+        obstacleManager.add();
+
+//        obstacles = new ArrayList<Obstacles>();
 //        bulletsP1 = new ArrayList<Bullet>();
 
-        for (int i = 0; i < 3; i++) {
-            Obstacles f = new Obstacles(myBatch);
-            Obstacles r = new Obstacles(myBatch);
-            obstacles.add(f);
-            obstacles.add(r);
-        }
+//        for (int i = 0; i < 3; i++) {
+//            Obstacles f = new Obstacles(myBatch);
+//            Obstacles r = new Obstacles(myBatch);
+//            obstacles.add(f);
+//            obstacles.add(r);
+//        }
 
 
 
@@ -71,11 +76,16 @@ public class FinalGame extends ApplicationAdapter {
         myBatch.draw(background, 0, 0);
         player2.updown(myBatch);
         player1.ws(myBatch);
+        player1.draw(myBatch);
+        player2.draw(myBatch);
 
-        for (Obstacles f : obstacles) {
-            f.update();
-            f.draw();
-        }
+        obstacleManager.draw();
+
+//        for (Obstacles f : obstacles) {
+//            f.update();
+//            f.draw();
+//
+//        }
 
 
 
@@ -104,7 +114,8 @@ public class FinalGame extends ApplicationAdapter {
 
         }
         camera.update();
-        manager.update(player1, player2);
+        manager.update(player1, player2, obstacleManager);
+        obstacleManager.update();
         manager.draw(camera);
 
 //        for(Bullet bullet : bulletsP1){

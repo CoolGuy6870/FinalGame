@@ -26,22 +26,16 @@ public class Obstacles {
         myImage = new Sprite(new Texture(Gdx.files.internal("tree.png")));
         myImage2 = new Sprite(new Texture(Gdx.files.internal("rock.png")));
 
-
-
-
         velocity = new Vector2(MathUtils.random() * 300, MathUtils.random() * 300);
         velocity2 = new Vector2(MathUtils.random()*300,  MathUtils.random()*300);
     }
 
     public void update() {
 
-
         float xPos = myImage.getX() + velocity.x * Gdx.graphics.getDeltaTime();
         float yPos = myImage.getY() + velocity.y * Gdx.graphics.getDeltaTime();
         float xPos2 = myImage2.getX() + velocity2.x * Gdx.graphics.getDeltaTime();
         float yPos2 = myImage2.getY() + velocity2.y * Gdx.graphics.getDeltaTime();
-
-
 
         myImage.setX(xPos);
         myImage.setY(yPos);
@@ -55,60 +49,70 @@ public class Obstacles {
             myImage.setX(230);
             velocity.x *= -1;
         }
-
         if (myImage.getY() < 0) {
             myImage.setY(0);
             velocity.y *= -1;
         }
-
-
-
-
         if (myImage.getX() > 660) {
             myImage.setX(660);
             velocity.x *= -1;
         }
-
         if (myImage.getY() + myImage.getHeight() > Gdx.graphics.getHeight()) {
             myImage.setY(Gdx.graphics.getHeight() - myImage.getHeight());
             velocity.y *= -1;
         }
 
 
-     if (myImage2.getX() < 230) {
-        myImage2.setX(230);
-        velocity2.x *= -1;
-    }
-
+        if (myImage2.getX() < 230) {
+            myImage2.setX(230);
+            velocity2.x *= -1;
+        }
         if (myImage2.getY() < 0) {
-        myImage2.setY(0);
-        velocity2.y *= -1;
-    }
-
-
-
-
+            myImage2.setY(0);
+            velocity2.y *= -1;
+        }
         if (myImage2.getX() > 675) {
-        myImage2.setX(675);
-        velocity2.x *= -1;
-    }
-
+            myImage2.setX(675);
+            velocity2.x *= -1;
+        }
         if (myImage2.getY() + myImage2.getHeight() > Gdx.graphics.getHeight()) {
-        myImage2.setY(Gdx.graphics.getHeight() - myImage2.getHeight());
-        velocity2.y *= -1;
+            myImage2.setY(Gdx.graphics.getHeight() - myImage2.getHeight());
+            velocity2.y *= -1;
+        }
+
     }
-}
+    public void handleHit(Bullet b) {
 
+        if(b.getBoundingRectangle().overlaps(myImage.getBoundingRectangle())) {
 
+            System.out.print("obstacle was hit");
+            b.setZero();
+            b.setActive(false);
+            velocity.setZero();
+            myImage.setAlpha(0);
 
+            alive = false;
+        }
+        else if(b.getBoundingRectangle().overlaps(myImage2.getBoundingRectangle())){
+
+            System.out.print("obstacle was hit");
+            b.setZero();
+            b.setActive(false);
+            velocity2.setZero();
+            myImage2.setAlpha(0);
+            alive = false;
+        }
+    }
 
     public void draw() {
         if (alive) {
             myImage.draw(myBatch);
             myImage2.draw(myBatch);
-        } else {
-            effect.draw(myBatch, Gdx.graphics.getDeltaTime());
         }
+    }
+
+    public boolean getAlive(){
+        return alive;
     }
 
 }

@@ -17,8 +17,10 @@ public class Player {
 
     private Vector2 velocity;
     private float speed;
-    private ParticleEffect effect;
+    private ParticleEffect effects;
     private long bulletSpawn;
+    private boolean alive = true;
+
 
 
     public Player(int startx, int starty, String imagepath) {
@@ -33,8 +35,8 @@ public class Player {
 
         bulletSpawn = System.currentTimeMillis();
 //
-//        effect = new ParticleEffect();
-//        effect.load(Gdx.files.internal("effects/explode.p"), Gdx.files.internal("images"));
+        effects = new ParticleEffect();
+        effects.load(Gdx.files.internal("effects/explode.p"), Gdx.files.internal("images"));
     }
 
     public void shoot(BulletManager manager, int right){
@@ -45,41 +47,41 @@ public class Player {
             }
 
             else if (right == -1) {
-                manager.spawnBullet(getX() - 6, getY() + 5, right);
+                manager.spawnBullet(getX() - 8, getY() + 5, right);
             }
                 bulletSpawn = System.currentTimeMillis();
 
         }
     }
 
-    public void draw(SpriteBatch myBatch) {
-
-        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_UP)) {
-            myImage.setY(myImage.getY() + speed * Gdx.graphics.getDeltaTime());
-            //System.out.println("im inside the if statement");
-
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_DOWN)) {
-            myImage.setY(myImage.getY() - speed * Gdx.graphics.getDeltaTime());
-        }
-
-
-        if (myImage.getY() < 0) {
-            myImage.setY(0);
-            velocity.y *= -1;
-        }
-
-
-        if (myImage.getY() + myImage.getHeight() > Gdx.graphics.getHeight()) {
-            myImage.setY(Gdx.graphics.getHeight() - myImage.getHeight());
-            velocity.y *= -1;
-        }
-
-
-        myImage.draw(myBatch);
+//    public void draw(SpriteBatch myBatch) {
+//
+//        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_UP)) {
+//            myImage.setY(myImage.getY() + speed * Gdx.graphics.getDeltaTime());
+//            //System.out.println("im inside the if statement");
+//
+//        }
+//        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_DOWN)) {
+//            myImage.setY(myImage.getY() - speed * Gdx.graphics.getDeltaTime());
+//        }
+//
+//
+//        if (myImage.getY() < 0) {
+//            myImage.setY(0);
+//            velocity.y *= -1;
+//        }
+//
+//
+//        if (myImage.getY() + myImage.getHeight() > Gdx.graphics.getHeight()) {
+//            myImage.setY(Gdx.graphics.getHeight() - myImage.getHeight());
+//            velocity.y *= -1;
+//        }
+//
+//
+//        myImage.draw(myBatch);
         //myBatch.draw(myImage, (int)velocity.x, (int)velocity.y);
 
-    }
+    //}
 
     public void updown(SpriteBatch myBatch) {
 
@@ -99,7 +101,7 @@ public class Player {
             myImage.setY(Gdx.graphics.getHeight() - myImage.getHeight());
             velocity.y *= -1;
         }
-        myImage.draw(myBatch);
+
 
     }
 
@@ -121,7 +123,7 @@ public class Player {
             myImage.setY(Gdx.graphics.getHeight() - myImage.getHeight());
             velocity.y *= -1;
         }
-        myImage.draw(myBatch);
+
 
     }
 
@@ -142,6 +144,16 @@ public class Player {
         return myImage.getY();
     }
 
+    public void draw(SpriteBatch myBatch){
+        if(alive) {
+            myImage.draw(myBatch);
+        }
+        else{
+            effects.draw(myBatch, Gdx.graphics.getDeltaTime());
+           // System.out.println("boom");
+        }
+    }
+
     public void handleHit(Bullet b) {
 //        boolean hit = myImage.getBoundingRectangle().contains(b.getX() + b.getWidth() / 2.0f, b.getY() + b.getHeight() / 2.0f);
 //        if(hit){
@@ -153,12 +165,14 @@ public class Player {
 
 //        if (b.getX() + b.getWidth() > myImage.getX()) {
 //            if (b.getY() + b.getHeight() < myImage.getY() + myImage.getHeight() && b.getY() + b.getHeight() > myImage.getY()) {
-////                effect.setPosition(myImage.getX() + myImage.getWidth() / 2.0f, myImage.getY() + myImage.getHeight() / 2.0f);
+                effects.setPosition(myImage.getX() + myImage.getWidth() / 2.0f, myImage.getY() + myImage.getHeight() / 2.0f);
 ////                effect.start();
                 System.out.print("hit!");
-                myImage.setColor(1, 0, 0, 1);
+                effects.start();
+//                myImage.setColor(1, 0, 0, 1);
                 b.setZero();
                 b.setActive(false);
+                alive = false;
 
             //}
         }

@@ -14,10 +14,13 @@ public class BulletManager {
     private ArrayList<Bullet> removed = new ArrayList<Bullet>();
 
     private SpriteBatch batch;
+  //  private ObstacleManager manager;
 
     public BulletManager() {
         batch = new SpriteBatch();
+      //  manager = new ObstacleManager();
     }
+
 
     public Bullet spawnBullet(float x, float y, int right){
         Bullet b;
@@ -36,12 +39,15 @@ public class BulletManager {
 
     }
 
-    public void update( Player P1,  Player P2){
+    public void update( Player P1,  Player P2, ObstacleManager manager){
         for(Bullet b : activeBullets){
             b.update();
+
+            manager.hitObstacle(b);
             P1.handleHit(b);
             P2.handleHit(b);
             if(b.getActive() == false){
+
                 removed.add(b);
             }
         }
