@@ -17,7 +17,7 @@ public class ObstacleManager {
     }
 
     public void add() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 6; i++) {
             Obstacles f = new Obstacles(batch);
             obstacles.add(f);
         }

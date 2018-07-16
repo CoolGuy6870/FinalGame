@@ -79,56 +79,25 @@ public class FinalGame extends ApplicationAdapter {
         player1.draw(myBatch);
         player2.draw(myBatch);
 
-        obstacleManager.draw();
 
-//        for (Obstacles f : obstacles) {
-//            f.update();
-//            f.draw();
-//
-//        }
-
-
-
-
+        myBatch.end();
 
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-//
             player1.shoot(manager, 1);
-            //bulletsP1.add(player1.shoot(1));
-            //manager.spawnBullet(player1.getX(),player1.getY(), 1);
 
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
 
             player2.shoot(manager, -1);
-//            if(System.currentTimeMillis()- lastSpawn > 500) {
-//               // bulletsP1.add(manager.spawnBullet(player2.getX(),player2.getY(), -1));
-//                manager.spawnBullet(player2.getX(),player2.getY(), -1);
-//                lastSpawn = System.currentTimeMillis();
-//            }
-            //bulletsP1.add(player2.shoot(-1));
-            //manager.spawnBullet(player2.getX(),player2.getY(), -1);
-
-
 
         }
-        camera.update();
+
         manager.update(player1, player2, obstacleManager);
-        obstacleManager.update();
         manager.draw(camera);
 
-//        for(Bullet bullet : bulletsP1){
-//            if (bullet != null) {
-//                bullet.update();
-//                bullet.draw(myBatch);
-//
-//            }
-//            player1.handleHit(bullet);
-//            player2.handleHit(bullet);
-//        }
-
-        myBatch.end();
+        obstacleManager.update();
+        obstacleManager.draw();
         }
 
         @Override

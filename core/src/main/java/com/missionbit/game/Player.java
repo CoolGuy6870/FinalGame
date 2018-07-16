@@ -19,7 +19,7 @@ public class Player {
     private float speed;
     private ParticleEffect effects;
     private long bulletSpawn;
-    private boolean alive = true;
+    protected boolean alive = true;
 
 
 
