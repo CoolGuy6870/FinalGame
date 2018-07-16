@@ -26,8 +26,8 @@ public class Obstacles {
         myImage = new Sprite(new Texture(Gdx.files.internal("tree.png")));
         myImage2 = new Sprite(new Texture(Gdx.files.internal("rock.png")));
 
-        velocity = new Vector2(MathUtils.random() * 300, MathUtils.random() * 300);
-        velocity2 = new Vector2(MathUtils.random()*300,  MathUtils.random()*300);
+        velocity = new Vector2(MathUtils.random() * 200, MathUtils.random() * 200);
+        velocity2 = new Vector2(MathUtils.random()*200,  MathUtils.random()*200);
     }
 
     public void update() {
@@ -39,6 +39,7 @@ public class Obstacles {
 
         myImage.setX(xPos);
         myImage.setY(yPos);
+
         myImage2.setX(xPos2);
         myImage2.setY(yPos2);
 
