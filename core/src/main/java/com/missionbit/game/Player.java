@@ -174,6 +174,7 @@ public class Player {
                 b.setActive(false);
                 alive = false;
 
+
             //}
         }
     }

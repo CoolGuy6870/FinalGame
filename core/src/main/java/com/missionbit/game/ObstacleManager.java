@@ -20,6 +20,7 @@ public class ObstacleManager {
         for (int i = 0; i < 6; i++) {
             Obstacles f = new Obstacles(batch);
             obstacles.add(f);
+
         }
     }
 
