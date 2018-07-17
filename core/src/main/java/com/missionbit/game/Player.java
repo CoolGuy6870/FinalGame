@@ -47,7 +47,7 @@ public class Player {
             }
 
             else if (right == -1) {
-                manager.spawnBullet(getX() - 8, getY() + 5, right);
+                manager.spawnBullet(getX() - 10, getY() + 5, right);
             }
                 bulletSpawn = System.currentTimeMillis();
 
