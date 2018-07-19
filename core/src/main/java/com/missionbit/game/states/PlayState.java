@@ -95,29 +95,18 @@ public class PlayState extends State {
             Vector3 touchPosition = new Vector3();
             touchPosition.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             cam.unproject(touchPosition);
-            //System.out.println(downButton1.getBoundingRectangle() + " " + touchPosition);
 
-            //if (upButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
-
-            //}
             if (shootButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
                 player1.shoot(manager, 1);
             }
-            //if (downButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
-
-            //}
-
-            //if (upButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
-
-            //}
 
             if (shootButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
                 player2.shoot(manager, -1);
             }
-<<<<<<< HEAD
+            
             if (upButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
                 player1.moveUp();
-           }
+            }
             if (upButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
                 player2.moveUp();
             }
@@ -127,11 +116,7 @@ public class PlayState extends State {
             if (downButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
                 player2.moveDown();
             }
-=======
-            //if (upButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
 
-                //}
->>>>>>> c6a33b48d20efe59f88dee08fd0833aaf7adf995
         }
     }
 
