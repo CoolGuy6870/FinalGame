@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.input.GestureDetector;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.BulletManager;
 import com.missionbit.game.ObstacleManager;
@@ -25,6 +27,8 @@ public class PlayState extends State {
     private Sprite upButton2;
     private Sprite shootButton2;
     private Sprite downButton2;
+
+
 
 
 
@@ -68,6 +72,7 @@ public class PlayState extends State {
        downButton2.setX(865);
        downButton2.setY(25);
 
+
    }
 
     @Override
@@ -91,34 +96,37 @@ public class PlayState extends State {
             player2.moveDown();
         }
 
-        if (Gdx.input.justTouched()) {
-            Vector3 touchPosition = new Vector3();
-            touchPosition.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-            cam.unproject(touchPosition);
+        for (int i = 0; i < 6; i++) {
+            if (Gdx.input.isTouched(i)) {
+                Vector3 touchPosition = new Vector3();
+                touchPosition.set(Gdx.input.getX(i), Gdx.input.getY(i), 0);
+                cam.unproject(touchPosition);
 
-            if (shootButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
-                player1.shoot(manager, 1);
-            }
+                if (shootButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+                    player1.shoot(manager, 1);
+                }
 
-            if (shootButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
-                player2.shoot(manager, -1);
-            }
-            
-            if (upButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
-                player1.moveUp();
-            }
-            if (upButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
-                player2.moveUp();
-            }
-            if (downButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
-                player1.moveDown();
-            }
-            if (downButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
-                player2.moveDown();
-            }
+                if (shootButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+                    player2.shoot(manager, -1);
+                }
 
+                if (upButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+                    player1.moveUp();
+                }
+                if (upButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+                    player2.moveUp();
+                }
+                if (downButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+                    player1.moveDown();
+                }
+                if (downButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+                    player2.moveDown();
+                }
+
+            }
         }
     }
+
 
     @Override
     public void update(float dt){
