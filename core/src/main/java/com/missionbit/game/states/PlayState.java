@@ -45,28 +45,28 @@ public class PlayState extends State {
         obstacleManager.add();
 
        upButton1 = new Sprite(new Texture(Gdx.files.internal("p1upbutton.gif")));
-       upButton1.setX(10);
+       upButton1.setX(15);
        upButton1.setY(420);
 
        shootButton1 = new Sprite(new Texture(Gdx.files.internal("p1shootbutton.gif")));
-       shootButton1.setX(10);
-       shootButton1.setY(255);
+       shootButton1.setX(15);
+       shootButton1.setY(220);
 
        downButton1 = new Sprite(new Texture(Gdx.files.internal("p1downbutton.gif")));
-       downButton1.setX(10);
-       downButton1.setY(10);
+       downButton1.setX(15);
+       downButton1.setY(25);
 
        upButton2 = new Sprite(new Texture(Gdx.files.internal("p2upbutton.gif")));
-       upButton2.setX(880);
+       upButton2.setX(865);
        upButton2.setY(420);
 
        shootButton2 = new Sprite(new Texture(Gdx.files.internal("p2shootbutton.gif")));
-       shootButton2.setX(880);
-       shootButton2.setY(255);
+       shootButton2.setX(865);
+       shootButton2.setY(220);
 
        downButton2 = new Sprite(new Texture(Gdx.files.internal("p2downbutton.gif")));
-       downButton2.setX(880);
-       downButton2.setY(10);
+       downButton2.setX(865);
+       downButton2.setY(25);
 
    }
 
@@ -103,9 +103,18 @@ public class PlayState extends State {
             if (shootButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
                 player1.shoot(manager, 1);
             }
+            //if (downButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+
+            //}
+
+            //if (upButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+
+            //}
+
             if (shootButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
                 player2.shoot(manager, -1);
             }
+<<<<<<< HEAD
             if (upButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
                 player1.moveUp();
            }
@@ -118,6 +127,11 @@ public class PlayState extends State {
             if (downButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
                 player2.moveDown();
             }
+=======
+            //if (upButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+
+                //}
+>>>>>>> c6a33b48d20efe59f88dee08fd0833aaf7adf995
         }
     }
 
