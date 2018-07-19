@@ -54,91 +54,32 @@ public class Player {
         }
     }
 
-//    public void draw(SpriteBatch myBatch) {
-//
-//        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_UP)) {
-//            myImage.setY(myImage.getY() + speed * Gdx.graphics.getDeltaTime());
-//            //System.out.println("im inside the if statement");
-//
-//        }
-//        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_DOWN)) {
-//            myImage.setY(myImage.getY() - speed * Gdx.graphics.getDeltaTime());
-//        }
-//
-//
-//        if (myImage.getY() < 0) {
-//            myImage.setY(0);
-//            velocity.y *= -1;
-//        }
-//
-//
-//        if (myImage.getY() + myImage.getHeight() > Gdx.graphics.getHeight()) {
-//            myImage.setY(Gdx.graphics.getHeight() - myImage.getHeight());
-//            velocity.y *= -1;
-//        }
-//
-//
-//        myImage.draw(myBatch);
-        //myBatch.draw(myImage, (int)velocity.x, (int)velocity.y);
 
-    //}
+    public void moveUp() {
 
-    public void updown(SpriteBatch myBatch) {
+        myImage.setY(myImage.getY() + speed * Gdx.graphics.getDeltaTime());
 
-        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_UP)) {
-            myImage.setY(myImage.getY() + speed * Gdx.graphics.getDeltaTime());
-            //System.out.println("im inside the if statement");
-
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_DOWN)) {
-            myImage.setY(myImage.getY() - speed * Gdx.graphics.getDeltaTime());
-        }
-        if (myImage.getY() < 0) {
-            myImage.setY(0);
-            velocity.y *= -1;
-        }
         if (myImage.getY() + myImage.getHeight() > Gdx.graphics.getHeight()) {
             myImage.setY(Gdx.graphics.getHeight() - myImage.getHeight());
             velocity.y *= -1;
         }
-
-
     }
 
-    public void ws(SpriteBatch myBatch) {
+    public void moveDown() {
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-            myImage.setY(myImage.getY() + speed * Gdx.graphics.getDeltaTime());
-            //System.out.println("im inside the if statement");
+        myImage.setY(myImage.getY() - speed * Gdx.graphics.getDeltaTime());
 
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-            myImage.setY(myImage.getY() - speed * Gdx.graphics.getDeltaTime());
-        }
         if (myImage.getY() < 0) {
             myImage.setY(0);
             velocity.y *= -1;
         }
-        if (myImage.getY() + myImage.getHeight() > Gdx.graphics.getHeight()) {
-            myImage.setY(Gdx.graphics.getHeight() - myImage.getHeight());
-            velocity.y *= -1;
-        }
-
 
     }
-
-//    public Bullet shoot(int right) {
-//        Bullet b = new Bullet(myImage.getX(), myImage.getY(), right);
-//        return b;
-//
-//
-//    }
 
     public float getX() {
         return myImage.getX();
 
     }
-
 
     public float getY() {
         return myImage.getY();

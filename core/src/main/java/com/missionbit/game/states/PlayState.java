@@ -68,10 +68,6 @@ public class PlayState extends State {
        downButton2.setX(880);
        downButton2.setY(10);
 
-
-
-
-
    }
 
     @Override
@@ -81,6 +77,18 @@ public class PlayState extends State {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
             player2.shoot(manager, -1);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+            player1.moveDown();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+            player1.moveUp();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_UP)) {
+            player2.moveUp();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.DPAD_DOWN)) {
+            player2.moveDown();
         }
 
         if (Gdx.input.justTouched()) {
@@ -97,6 +105,18 @@ public class PlayState extends State {
             }
             if (shootButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
                 player2.shoot(manager, -1);
+            }
+            if (upButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+                player1.moveUp();
+           }
+            if (upButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+                player2.moveUp();
+            }
+            if (downButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+                player1.moveDown();
+            }
+            if (downButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+                player2.moveDown();
             }
         }
     }
@@ -115,8 +135,6 @@ public class PlayState extends State {
         myBatch.begin();
 
         myBatch.draw(background, 0, 0);
-        player2.updown(myBatch);
-        player1.ws(myBatch);
         player1.draw(myBatch);
         player2.draw(myBatch);
         upButton1.draw(myBatch);
@@ -126,7 +144,6 @@ public class PlayState extends State {
         shootButton2.draw(myBatch);
         downButton2.draw(myBatch);
 
-
         myBatch.end();
 
         manager.update(player1, player2, obstacleManager);
@@ -134,8 +151,6 @@ public class PlayState extends State {
 
         obstacleManager.update();
         obstacleManager.draw();
-
-
     }
 
     @Override
