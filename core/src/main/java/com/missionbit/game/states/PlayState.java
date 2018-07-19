@@ -4,27 +4,37 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector3;
 import com.missionbit.game.BulletManager;
 import com.missionbit.game.ObstacleManager;
 import com.missionbit.game.Player;
 
 public class PlayState extends State {
-    private OrthographicCamera camera;
+    //private OrthographicCamera camera;
     private SpriteBatch myBatch;
     private Player player1;
     private Player player2;
     private Texture background;
     private BulletManager manager;
     private ObstacleManager obstacleManager;
+    private Sprite upButton1;
+    private Sprite shootButton1;
+    private Sprite downButton1;
+    private Sprite upButton2;
+    private Sprite shootButton2;
+    private Sprite downButton2;
+
+
 
    public PlayState(GameStateManager gsm) {
        super(gsm);
         background = new Texture("background.png");
 
         // Set up camera for 2d view of 800x480 pixels
-        camera = new OrthographicCamera();
-        camera.setToOrtho(false, 960, 540);
+        cam = new OrthographicCamera();
+        cam.setToOrtho(false, 960, 540);
 
         // Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
@@ -33,6 +43,35 @@ public class PlayState extends State {
         manager = new BulletManager();
         obstacleManager = new ObstacleManager();
         obstacleManager.add();
+
+       upButton1 = new Sprite(new Texture(Gdx.files.internal("p1upbutton.gif")));
+       upButton1.setX(10);
+       upButton1.setY(420);
+
+       shootButton1 = new Sprite(new Texture(Gdx.files.internal("p1shootbutton.gif")));
+       shootButton1.setX(10);
+       shootButton1.setY(255);
+
+       downButton1 = new Sprite(new Texture(Gdx.files.internal("p1downbutton.gif")));
+       downButton1.setX(10);
+       downButton1.setY(10);
+
+       upButton2 = new Sprite(new Texture(Gdx.files.internal("p2upbutton.gif")));
+       upButton2.setX(880);
+       upButton2.setY(420);
+
+       shootButton2 = new Sprite(new Texture(Gdx.files.internal("p2shootbutton.gif")));
+       shootButton2.setX(880);
+       shootButton2.setY(255);
+
+       downButton2 = new Sprite(new Texture(Gdx.files.internal("p2downbutton.gif")));
+       downButton2.setX(880);
+       downButton2.setY(10);
+
+
+
+
+
    }
 
     @Override
@@ -42,6 +81,23 @@ public class PlayState extends State {
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
             player2.shoot(manager, -1);
+        }
+
+        if (Gdx.input.justTouched()) {
+            Vector3 touchPosition = new Vector3();
+            touchPosition.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            cam.unproject(touchPosition);
+            //System.out.println(downButton1.getBoundingRectangle() + " " + touchPosition);
+
+            //if (upButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+
+            //}
+            if (shootButton1.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+                player1.shoot(manager, 1);
+            }
+            if (shootButton2.getBoundingRectangle().contains(touchPosition.x, touchPosition.y)) {
+                player2.shoot(manager, -1);
+            }
         }
     }
 
@@ -53,8 +109,8 @@ public class PlayState extends State {
     @Override
     public void render(SpriteBatch myBatch) {
         //Set up our camera
-        camera.update();
-        myBatch.setProjectionMatrix(camera.combined);
+        cam.update();
+        myBatch.setProjectionMatrix(cam.combined);
 
         myBatch.begin();
 
@@ -63,14 +119,23 @@ public class PlayState extends State {
         player1.ws(myBatch);
         player1.draw(myBatch);
         player2.draw(myBatch);
+        upButton1.draw(myBatch);
+        shootButton1.draw(myBatch);
+        downButton1.draw(myBatch);
+        upButton2.draw(myBatch);
+        shootButton2.draw(myBatch);
+        downButton2.draw(myBatch);
+
 
         myBatch.end();
 
         manager.update(player1, player2, obstacleManager);
-        manager.draw(camera);
+        manager.draw(cam);
 
         obstacleManager.update();
         obstacleManager.draw();
+
+
     }
 
     @Override
@@ -78,4 +143,5 @@ public class PlayState extends State {
         myBatch.dispose();
     }
 }
+
 
