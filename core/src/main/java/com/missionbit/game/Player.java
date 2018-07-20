@@ -17,7 +17,7 @@ public class Player {
 
     private Vector2 velocity;
     private float speed;
-    private ParticleEffect effects;
+    public ParticleEffect effects;
     private long bulletSpawn;
     protected boolean alive = true;
 
@@ -41,7 +41,7 @@ public class Player {
 
     public void shoot(BulletManager manager, int right){
         if(System.currentTimeMillis()- bulletSpawn > 500) {
-            //bulletsP1.add(manager.spawnBullet(player1.getX(),player1.getY(), 1));
+
             if(  right == 1) {
                 manager.spawnBullet(getX() + myImage.getWidth() + 1, getY() + 5, right);
             }
@@ -91,33 +91,30 @@ public class Player {
         }
         else{
             effects.draw(myBatch, Gdx.graphics.getDeltaTime());
-           // System.out.println("boom");
+
         }
     }
 
     public void handleHit(Bullet b) {
-//        boolean hit = myImage.getBoundingRectangle().contains(b.getX() + b.getWidth() / 2.0f, b.getY() + b.getHeight() / 2.0f);
-//        if(hit){
-//            myImage.setColor(1,0,0,1);
-//            b.setActive(false);
+
 
 
           if(b.getBoundingRectangle().overlaps(myImage.getBoundingRectangle())) {
-
-//        if (b.getX() + b.getWidth() > myImage.getX()) {
-//            if (b.getY() + b.getHeight() < myImage.getY() + myImage.getHeight() && b.getY() + b.getHeight() > myImage.getY()) {
                 effects.setPosition(myImage.getX() + myImage.getWidth() / 2.0f, myImage.getY() + myImage.getHeight() / 2.0f);
-////                effect.start();
                 System.out.print("hit!");
                 effects.start();
-//                myImage.setColor(1, 0, 0, 1);
                 b.setZero();
                 b.setActive(false);
                 alive = false;
 
+                myImage.setY(9999);
 
-            //}
+
+
         }
+    }
+    public boolean isAlive(){
+        return alive;
     }
 
 }

@@ -25,7 +25,7 @@ public class MenuState extends State {
         playBtn = new Rectangle(386,  93, 156, 62);
         //renderer = new ShapeRenderer();
 
-        cam.setToOrtho(false, 960, 540);
+       // cam.setToOrtho(false, 960, 540);
     }
 
     @Override

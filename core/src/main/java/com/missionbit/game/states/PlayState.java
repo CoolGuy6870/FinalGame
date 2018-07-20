@@ -37,8 +37,8 @@ public class PlayState extends State {
         background = new Texture("background.png");
 
         // Set up camera for 2d view of 800x480 pixels
-        cam = new OrthographicCamera();
-        cam.setToOrtho(false, 960, 540);
+        //cam = new OrthographicCamera();
+        //cam.setToOrtho(false, 960, 540);
 
         // Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
@@ -158,6 +158,15 @@ public class PlayState extends State {
 
         obstacleManager.update();
         obstacleManager.draw();
+
+        if (!player1.isAlive() && player1.effects.isComplete()) {
+            gsm.set(new RestartState(gsm, 1));
+
+        }
+        if (!player2.isAlive() && player2.effects.isComplete()) {
+            gsm.set(new RestartState(gsm, -1));
+
+        }
     }
 
     @Override
