@@ -108,6 +108,7 @@ public class Player {
                 alive = false;
 
                 myImage.setY(9999);
+                myImage.setX(9999);
 
 
 
