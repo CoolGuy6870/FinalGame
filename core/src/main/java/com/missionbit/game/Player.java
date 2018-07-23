@@ -32,7 +32,7 @@ public class Player {
 
     public Player(int startx, int starty, String imagepath) {
         //myImage = new Sprite(new Texture(Gdx.files.internal(imagepath)));
-        playerAnimation = Utils.LoadAnimation(imagepath,2,2,4,0.2f);
+        playerAnimation = Utils.LoadAnimation(imagepath,2,2,4,0.05f);
 
 
         //myImage.setX(startx);
