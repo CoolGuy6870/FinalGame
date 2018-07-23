@@ -42,8 +42,8 @@ public class PlayState extends State {
 
         // Create a sprite batch for rendering our image
         myBatch = new SpriteBatch();
-        player1 = new Player(140, 245, "Player 1.gif");
-        player2 = new Player(755, 245, "Player 2.gif");
+        player1 = new Player(140, 245, "Player 1.png");
+        player2 = new Player(755, 245, "Player 2 .png");
         manager = new BulletManager();
         obstacleManager = new ObstacleManager();
         obstacleManager.add();
