@@ -2,6 +2,7 @@ package com.missionbit.game.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -32,6 +33,7 @@ public class PlayState extends State {
 
 
 
+
    public PlayState(GameStateManager gsm) {
        super(gsm);
         background = new Texture("background.png");
@@ -41,6 +43,7 @@ public class PlayState extends State {
         //cam.setToOrtho(false, 960, 540);
 
         // Create a sprite batch for rendering our image
+
         myBatch = new SpriteBatch();
         player1 = new Player(140, 245, "Player 1.gif");
         player2 = new Player(755, 245, "Player 2.gif");
@@ -79,6 +82,7 @@ public class PlayState extends State {
     protected void handleInput(){
         if (Gdx.input.isKeyPressed(Input.Keys.D)) {
             player1.shoot(manager, 1);
+
         }
         if (Gdx.input.isKeyPressed(Input.Keys.DPAD_LEFT)) {
             player2.shoot(manager, -1);

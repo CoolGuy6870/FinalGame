@@ -1,5 +1,7 @@
 package com.missionbit.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -14,10 +16,13 @@ public class BulletManager {
     private ArrayList<Bullet> removed = new ArrayList<Bullet>();
 
     private SpriteBatch batch;
+    private Sound laser;
+
   //  private ObstacleManager manager;
 
     public BulletManager() {
         batch = new SpriteBatch();
+        laser = Gdx.audio.newSound(Gdx.files.internal("GunSound.wav"));
       //  manager = new ObstacleManager();
     }
 
@@ -28,6 +33,7 @@ public class BulletManager {
             b = new Bullet(x,y,right);
             activeBullets.add(b);
             System.out.println("New");
+
         }
         else{
             b = pool.remove(0);
@@ -35,6 +41,7 @@ public class BulletManager {
             activeBullets.add(b);
             System.out.println("From Pool");
         }
+        laser.play(1.0f);
         return b;
 
     }
