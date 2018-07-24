@@ -2,6 +2,7 @@ package com.missionbit.game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
@@ -23,7 +24,7 @@ public class Player {
     private float animationTime;
     private float explosionAnimationTime;
     private Animation<TextureRegion> explosionAnimation;
-
+    private Sound explode;
     private Vector2 velocity;
     private float speed;
     public ParticleEffect effects;
@@ -113,7 +114,7 @@ public class Player {
         else{
             //effects.draw(myBatch, Gdx.graphics.getDeltaTime());
             TextureRegion region = explosionAnimation.getKeyFrame(explosionAnimationTime,false);
-            myBatch.draw(region,position.x - 14,position.y - 14);
+            myBatch.draw(region,position.x - 16,position.y - 16);
             explosionAnimationTime += Gdx.graphics.getDeltaTime();
 
         }
@@ -130,6 +131,7 @@ public class Player {
                 b.setZero();
                 b.setActive(false);
                 alive = false;
+                explode = Gdx.audio.newSound(Gdx.files.internal("Boom.wav"));
                 explosionAnimationTime = 0;
 
                 //position.y = 9999;

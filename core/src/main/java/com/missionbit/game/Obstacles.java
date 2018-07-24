@@ -30,6 +30,10 @@ public class Obstacles {
 
         velocity = new Vector2(MathUtils.random() * 150, MathUtils.random() * 150);
         velocity2 = new Vector2(MathUtils.random()* 150,  MathUtils.random()* 150);
+
+        effect = new ParticleEffect();
+        effect.load(Gdx.files.internal("effects/RockExplosion.p"), Gdx.files.internal("effects"));
+
     }
 
     public void update() {
@@ -86,7 +90,7 @@ public class Obstacles {
     }
     public void handleHit(Bullet b) {
 
-        if(b.getBoundingRectangle().overlaps(myImage.getBoundingRectangle())) {
+        if(b.getBoundingRectangle().overlaps(myImage.getBoundingRectangle()) && alive) {
 
             System.out.print("obstacle was hit");
             b.setZero();
@@ -95,6 +99,9 @@ public class Obstacles {
             myImage.setAlpha(0);
 
             alive = false;
+            effect.start();
+            effect.setPosition(myImage.getX(),myImage.getY());
+
         }
 //        else if(b.getBoundingRectangle().overlaps(myImage2.getBoundingRectangle())){
 //
@@ -112,10 +119,13 @@ public class Obstacles {
             myImage.draw(myBatch);
            // myImage2.draw(myBatch);
         }
+        else{
+            effect.draw(myBatch,Gdx.graphics.getDeltaTime());
+        }
     }
 
     public boolean getAlive(){
-        return alive;
+        return alive || !effect.isComplete();
     }
 
 }
