@@ -17,10 +17,12 @@ public class MenuState extends State {
     private Texture background;
     private Rectangle playBtn;
     private Vector3 touchPosition;
+    private long timer;
     //private ShapeRenderer renderer;
 
     public MenuState(GameStateManager gsm) {
         super(gsm);
+        timer = System.currentTimeMillis();
         background = new Texture("Start Screen.gif");
         playBtn = new Rectangle(386,  93, 156, 62);
         //renderer = new ShapeRenderer();
@@ -34,9 +36,11 @@ public class MenuState extends State {
            touchPosition = new Vector3();
            touchPosition.set(Gdx.input.getX(), Gdx.input.getY(), 0);
            cam.unproject(touchPosition);
+           if(System.currentTimeMillis() - timer > 500){
 
            if(playBtn.contains(touchPosition.x, touchPosition.y)) {
                gsm.set(new PlayState(gsm));
+           }
            }
        }
     }

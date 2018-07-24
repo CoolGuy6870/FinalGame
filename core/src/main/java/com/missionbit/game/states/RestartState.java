@@ -20,6 +20,7 @@ public class RestartState extends State {
     protected void handleInput(){
         if(Gdx.input.justTouched()){
             gsm.set(new MenuState(gsm));
+
         }
     }
 
