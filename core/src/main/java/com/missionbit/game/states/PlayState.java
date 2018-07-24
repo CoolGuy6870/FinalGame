@@ -163,11 +163,11 @@ public class PlayState extends State {
         obstacleManager.update();
         obstacleManager.draw();
 
-        if (!player1.isAlive() && player1.effects.isComplete()) {
+        if (!player1.isAlive()) {
             gsm.set(new RestartState(gsm, 1));
 
         }
-        if (!player2.isAlive() && player2.effects.isComplete()) {
+        if (!player2.isAlive()) {
             gsm.set(new RestartState(gsm, -1));
 
         }

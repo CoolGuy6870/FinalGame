@@ -21,6 +21,7 @@ public class Player {
     private Vector2 position;
     private Rectangle rectangle;
     private float animationTime;
+    private float explosionAnimationTime;
     private Animation<TextureRegion> explosionAnimation;
 
     private Vector2 velocity;
@@ -56,6 +57,7 @@ public class Player {
         if(System.currentTimeMillis()- bulletSpawn > 500) {
 
             animationTime = 0;
+            //explosionAnimationTime = 0;
 
             if(  right == 1) {
                 manager.spawnBullet(getX() + getWidth() + 1, getY() + 5, right);
@@ -110,8 +112,9 @@ public class Player {
         }
         else{
             //effects.draw(myBatch, Gdx.graphics.getDeltaTime());
-            TextureRegion region = explosionAnimation.getKeyFrame(0);
-            myBatch.draw(region,position.x,position.y);
+            TextureRegion region = explosionAnimation.getKeyFrame(explosionAnimationTime,false);
+            myBatch.draw(region,position.x - 14,position.y - 14);
+            explosionAnimationTime += Gdx.graphics.getDeltaTime();
 
         }
     }
@@ -120,23 +123,24 @@ public class Player {
 
 
 
-          if(b.getBoundingRectangle().overlaps(getRect())) {
+          if(b.getBoundingRectangle().overlaps(getRect()) && alive) {
                 effects.setPosition(position.x + getWidth() / 2.0f, position.y + getHeight() / 2.0f);
                 System.out.print("hit!");
                 effects.start();
                 b.setZero();
                 b.setActive(false);
                 alive = false;
+                explosionAnimationTime = 0;
 
-                position.y = 9999;
-                position.x = 9999;
+                //position.y = 9999;
+                //position.x = 9999;
 
 
 
         }
     }
     public boolean isAlive(){
-        return alive;
+        return alive || !explosionAnimation.isAnimationFinished(explosionAnimationTime);
     }
 
     public int getWidth(){
