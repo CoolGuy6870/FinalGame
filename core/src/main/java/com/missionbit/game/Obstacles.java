@@ -30,11 +30,14 @@ public class Obstacles {
         myImage = new Sprite(new Texture(Gdx.files.internal(path)));
         //myImage2 = new Sprite(new Texture(Gdx.files.internal("rock.png")));
 
-        velocity = new Vector2(MathUtils.random() * 150, MathUtils.random() * 150);
-        velocity2 = new Vector2(MathUtils.random()* 150,  MathUtils.random()* 150);
+        velocity = new Vector2(MathUtils.random() * 300 - 150, MathUtils.random() * 300-150);
+        velocity2 = new Vector2(MathUtils.random()* 300-150,  MathUtils.random()* 300-150);
 
         effect = new ParticleEffect();
         effect.load(Gdx.files.internal("effects/RockExplosion.p"), Gdx.files.internal("effects"));
+
+        myImage.setX(Gdx.graphics.getWidth() / 2);
+        myImage.setY(Gdx.graphics.getHeight() / 2);
 
     }
 

@@ -36,7 +36,7 @@ public class MenuState extends State {
            touchPosition = new Vector3();
            touchPosition.set(Gdx.input.getX(), Gdx.input.getY(), 0);
            cam.unproject(touchPosition);
-           if(System.currentTimeMillis() - timer > 500){
+           if(System.currentTimeMillis() - timer > 250){
 
            if(playBtn.contains(touchPosition.x, touchPosition.y)) {
                gsm.set(new PlayState(gsm));

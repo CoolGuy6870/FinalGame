@@ -28,6 +28,7 @@ public class PlayState extends State {
     private Sprite upButton2;
     private Sprite shootButton2;
     private Sprite downButton2;
+    private long newObstacle;
 
 
 
@@ -37,6 +38,9 @@ public class PlayState extends State {
    public PlayState(GameStateManager gsm) {
        super(gsm);
         background = new Texture("background.png");
+
+       newObstacle = System.currentTimeMillis();
+
 
         // Set up camera for 2d view of 800x480 pixels
         //cam = new OrthographicCamera();
@@ -135,6 +139,10 @@ public class PlayState extends State {
     @Override
     public void update(float dt){
        handleInput();
+        if(System.currentTimeMillis() - newObstacle > 2000){
+            obstacleManager.spawnObstacle();
+            newObstacle = System.currentTimeMillis();
+        }
     }
 
     @Override
