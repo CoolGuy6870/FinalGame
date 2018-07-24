@@ -1,6 +1,7 @@
 package com.missionbit.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -19,6 +20,7 @@ public class Obstacles {
     private boolean alive = true;
     private Vector2 velocity2;
     private String []imageNames = {"meteor.png", "rock.png"};
+    private Sound crack;
 
 
     //This goes in the body of our class
@@ -99,6 +101,8 @@ public class Obstacles {
             myImage.setAlpha(0);
 
             alive = false;
+            crack = Gdx.audio.newSound(Gdx.files.internal("rockExplosion.wav"));
+            crack.play(1.0f);
             effect.start();
             effect.setPosition(myImage.getX(),myImage.getY());
 

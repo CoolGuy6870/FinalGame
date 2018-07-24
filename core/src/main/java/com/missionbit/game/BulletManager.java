@@ -41,7 +41,7 @@ public class BulletManager {
             activeBullets.add(b);
             System.out.println("From Pool");
         }
-        laser.play(1.0f);
+        laser.play(.5f);
         return b;
 
     }
