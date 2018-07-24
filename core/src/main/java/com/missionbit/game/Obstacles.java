@@ -18,7 +18,7 @@ public class Obstacles {
     private ParticleEffect effect;
     private boolean alive = true;
     private Vector2 velocity2;
-    private String []imageNames = {"tree.png", "rock.png"};
+    private String []imageNames = {"meteor.png", "rock.png"};
 
 
     //This goes in the body of our class
