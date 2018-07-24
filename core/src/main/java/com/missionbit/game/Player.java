@@ -21,6 +21,7 @@ public class Player {
     private Vector2 position;
     private Rectangle rectangle;
     private float animationTime;
+    private Animation<TextureRegion> explosionAnimation;
 
     private Vector2 velocity;
     private float speed;
@@ -33,6 +34,7 @@ public class Player {
     public Player(int startx, int starty, String imagepath) {
         //myImage = new Sprite(new Texture(Gdx.files.internal(imagepath)));
         playerAnimation = Utils.LoadAnimation(imagepath,2,2,4,0.05f);
+        explosionAnimation = Utils.LoadAnimation("effects/explosion.gif.png",3,4,12,0.3f);
 
 
         //myImage.setX(startx);
@@ -47,7 +49,7 @@ public class Player {
         bulletSpawn = System.currentTimeMillis();
 //
         effects = new ParticleEffect();
-        effects.load(Gdx.files.internal("effects/explode.p"), Gdx.files.internal("images"));
+        //effects.load(Gdx.files.internal("effects/explode.p"), Gdx.files.internal("images"));
     }
 
     public void shoot(BulletManager manager, int right){
@@ -107,7 +109,9 @@ public class Player {
             animationTime += Gdx.graphics.getDeltaTime();
         }
         else{
-            effects.draw(myBatch, Gdx.graphics.getDeltaTime());
+            //effects.draw(myBatch, Gdx.graphics.getDeltaTime());
+            TextureRegion region = explosionAnimation.getKeyFrame(0);
+            myBatch.draw(region,position.x,position.y);
 
         }
     }
