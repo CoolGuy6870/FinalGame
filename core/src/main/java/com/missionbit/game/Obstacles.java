@@ -36,6 +36,8 @@ public class Obstacles {
         effect = new ParticleEffect();
         effect.load(Gdx.files.internal("effects/RockExplosion.p"), Gdx.files.internal("effects"));
 
+        crack = Gdx.audio.newSound(Gdx.files.internal("rockExplosion.wav"));
+
     }
 
     public void update() {
@@ -101,7 +103,6 @@ public class Obstacles {
             myImage.setAlpha(0);
 
             alive = false;
-            crack = Gdx.audio.newSound(Gdx.files.internal("rockExplosion.wav"));
             crack.play(1.0f);
             effect.start();
             effect.setPosition(myImage.getX(),myImage.getY());

@@ -37,6 +37,7 @@ public class Player {
         //myImage = new Sprite(new Texture(Gdx.files.internal(imagepath)));
         playerAnimation = Utils.LoadAnimation(imagepath,2,2,4,0.05f);
         explosionAnimation = Utils.LoadAnimation("effects/explosion.gif.png",3,4,12,0.02f);
+        explode = Gdx.audio.newSound(Gdx.files.internal("Boom.wav"));
 
 
         //myImage.setX(startx);
@@ -131,7 +132,6 @@ public class Player {
                 b.setZero();
                 b.setActive(false);
                 alive = false;
-                explode = Gdx.audio.newSound(Gdx.files.internal("Boom.wav"));
                 explode.play(1.0f);
                 explosionAnimationTime = 0;
 

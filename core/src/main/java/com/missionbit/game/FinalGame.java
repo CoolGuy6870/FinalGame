@@ -19,7 +19,7 @@ public class FinalGame extends ApplicationAdapter{
         batch = new SpriteBatch();
         music = Gdx.audio.newMusic(Gdx.files.internal("ThemeMusic.mp3"));
         music.setLooping(true);
-        music.setVolume(0.8f);
+        music.setVolume(0.2f);
         music.play();
         gsm = new GameStateManager();
         gsm.push(new MenuState(gsm));
@@ -37,6 +37,6 @@ public class FinalGame extends ApplicationAdapter{
     public void dispose () {
         super.dispose();
         batch.dispose();
-    //    music.dispose();
+        music.dispose();
     }
 }
