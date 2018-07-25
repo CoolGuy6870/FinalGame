@@ -44,16 +44,20 @@ public class ObstacleManager {
 
             }
         }
+        System.out.println(obstacles.size());
         obstacles.removeAll(removed);
         removed.clear();
 
     }
-    public Obstacles spawnObstacle(){
+    public Obstacles spawnObstacle() {
 
         Obstacles f;
         f = new Obstacles(batch);
-        obstacles.add(f);
+        if (obstacles.size() < 12) {
+            obstacles.add(f);
+        }
         return f;
+
     }
 
 
