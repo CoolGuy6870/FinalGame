@@ -48,6 +48,13 @@ public class ObstacleManager {
         removed.clear();
 
     }
+    public Obstacles spawnObstacle(){
+
+        Obstacles f;
+        f = new Obstacles(batch);
+        obstacles.add(f);
+        return f;
+    }
 
 
 
