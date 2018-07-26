@@ -19,7 +19,7 @@ public class FinalGame extends ApplicationAdapter{
         batch = new SpriteBatch();
         music = Gdx.audio.newMusic(Gdx.files.internal("ThemeMusic.mp3"));
         music.setLooping(true);
-        music.setVolume(0.2f);
+        music.setVolume(0.6f);
         music.play();
         gsm = new GameStateManager();
         gsm.push(new MenuState(gsm));

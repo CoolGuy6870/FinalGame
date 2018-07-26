@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class RestartState extends State {
 
     private Texture RestartScreen;
+    private long timer;
     public RestartState(GameStateManager gsm, int right){
         super(gsm);
         if(right == 1) {
@@ -16,10 +17,14 @@ public class RestartState extends State {
             RestartScreen = new Texture(Gdx.files.internal("EndScreenP1.gif"));
         }
 
+        timer = System.currentTimeMillis();
+
     }
     protected void handleInput(){
         if(Gdx.input.justTouched()){
-            gsm.set(new MenuState(gsm));
+            if(System.currentTimeMillis() - timer > 1000) {
+                gsm.set(new MenuState(gsm));
+            }
 
         }
     }
