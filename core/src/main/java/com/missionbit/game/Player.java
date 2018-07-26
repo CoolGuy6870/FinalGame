@@ -47,7 +47,7 @@ public class Player {
         position.y = starty;
         rectangle = new Rectangle();
         velocity = new Vector2(0, 0);
-        speed = 230.0f;
+        speed = 140.0f;
 
         bulletSpawn = System.currentTimeMillis();
 //
@@ -66,7 +66,7 @@ public class Player {
             }
 
             else if (right == -1) {
-                manager.spawnBullet(getX() - 10, getY() + 5, right);
+                manager.spawnBullet(getX() - 12, getY() + 5, right);
             }
                 bulletSpawn = System.currentTimeMillis();
 
