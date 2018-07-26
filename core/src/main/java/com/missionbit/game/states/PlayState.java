@@ -139,11 +139,15 @@ public class PlayState extends State {
     @Override
     public void update(float dt){
        handleInput();
+//       for(int i = 0; i<3; i++){
+//           System.out.println(i);
         if(System.currentTimeMillis() - newObstacle > 2000){
             obstacleManager.spawnObstacle();
             newObstacle = System.currentTimeMillis();
         }
-    }
+
+    //}
+   }
 
     @Override
     public void render(SpriteBatch myBatch) {
@@ -170,6 +174,7 @@ public class PlayState extends State {
 
         obstacleManager.update();
         obstacleManager.draw();
+        update(Gdx.graphics.getDeltaTime());
 
         if (!player1.isAlive()) {
             gsm.set(new RestartState(gsm, 1));
